@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            /**
+             * 获取新按钮和标题的引用，并保存至变量中
+            */
+            let myButton = document.querySelector('button');
+            let myHeading = document.querySelector('h1');
+
+            /**
+             * 添加以下函数来设置个性化欢迎信息。
+             * 该函数首先调用了prompt()函数，与alert()类似会弹出一个对话框。但这里需要用户输入数据，并在确定后将数据存储在myName变量里。
+             * 通过localstorage的setItem()函数来创建一个'name'数据项，并把myName变量复制给它。
+             * textContent属性设置为一个欢迎字符串加上这个新设置的名字。
+            */
+            function setUserName() {
+                let myName = prompt("请输入你的名字。");
+                if (!myName || myName === null) {
+                    setUserName();
+                } else {
+                    localStorage.setItem('name', myName);
+                    myHeading.textContent = 'Mozilla 酷毙了，' + myName;
+                }
+            }
+
+            if (!localStorage.getItem('name')) {
+                setUserName();
+            } else {
+                let storedName = localStorage.getItem('name');
+                myHeading.textContent = 'Mozilla 酷毙了，' + storedName;
+            }
+
+            myButton.onclick = function () {
+                setUserName();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1></h1>
+    <button>切换用户</button>
+</body>
+
+</html>
