@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="output">
+        <ul></ul>
+        <p></p>
+    </div>
+    <button>Reset</button>
+    <button>Show solution</button>
+    <script>
+        reset();
+
+        function reset() {
+            var list = document.querySelector('.output ul');
+            var totalBox = document.querySelector('.output p');
+            var total = 0;
+            list.innerHTML = '';
+            totalBox.textContent = '';
+            for (var i = 0; i <= 0; i++) {
+                itemText = 0;
+                var listItem = document.createElement('li');
+                listItem.textContent = itemText;
+                list.appendChild(listItem);
+            }
+            totalBox.textContent = 'Total: $' + total.toFixed(2);
+        }
+        var resetBtn = document.querySelectorAll("button");
+        resetBtn[0].addEventListener('click', reset);
+
+        function showSolution() {
+            var list = document.querySelector('.output ul');
+            var totalBox = document.querySelector('.output p');
+            var total = 0;
+            list.innerHTML = '';
+            totalBox.textContent = '';
+
+            var products = ['Underpants:6.99',
+                'Socks:5.99',
+                'T-shirt:14.99',
+                'Trousers:31.99',
+                'Shoes:23.99'
+            ];
+
+            for (var i = 0; i < products.length; i++) {
+                var subArray = products[i].split(':');
+                console.log(subArray);
+                var name = subArray[0];
+                var price = Number(subArray[1]);
+                total += price;
+                console.log(total);
+                itemText = name + ' — $' + price;
+                var listItem = document.createElement('li');
+                listItem.textContent = itemText;
+                list.appendChild(listItem);
+            }
+            totalBox.textContent = 'Total: $' + total.toFixed(2);
+        }
+        var showSolutionBtn = document.querySelectorAll("button")
+        showSolutionBtn[1].addEventListener('click', showSolution);
+    </script>
+</body>
+
+</html>

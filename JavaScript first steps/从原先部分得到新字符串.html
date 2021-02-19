@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="output">
+        <ul></ul>
+    </div>
+    <button>Reset</button>
+    <button>Show solution</button>
+    <script>
+        reset();
+
+        function reset() {
+            var list = document.querySelector(".output ul");
+            list.innerHTML = '';
+            var stations = ['MAN675847583748sjt567654;Manchester Piccadilly',
+                'GNF576746573fhdg4737dh4;Greenfield',
+                'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
+                'SYB4f65hf75f736463;Stalybridge',
+                'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'
+            ];
+            for (var i = 0; i < stations.length; i++) {
+                var input = stations[i];
+                var result = input;
+                var listItem = document.createElement("li");
+                listItem.textContent = result;
+                list.appendChild(listItem);
+            }
+        }
+        var resetBtn = document.querySelectorAll("button");
+        resetBtn[0].addEventListener('click', reset);
+
+        function showSolution() {
+            var list = document.querySelector(".output ul");
+            list.innerHTML = '';
+            var stations = ['MAN675847583748sjt567654;Manchester Piccadilly',
+                'GNF576746573fhdg4737dh4;Greenfield',
+                'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
+                'SYB4f65hf75f736463;Stalybridge',
+                'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'
+            ];
+            for (var i = 0; i < stations.length; i++) {
+                var input = stations[i];
+                var code = input.slice(0, 3);
+                var semiC = input.indexOf(';');
+                var name = input.slice(semiC + 1);
+                var final = code + ': ' + name;
+                var result = final;
+                var listItem = document.createElement('li');
+                listItem.textContent = result;
+                list.appendChild(listItem);
+            }
+        }
+        var showSolutionBtn = document.querySelectorAll("button")
+        showSolutionBtn[1].addEventListener('click', showSolution);
+    </script>
+</body>
+
+</html>
