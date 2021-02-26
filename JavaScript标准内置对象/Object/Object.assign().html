@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象分配到目标对象。它将返回目标对象。
+         * 
+         * Object.assign(target, ...sources)
+         * 参数：target 目标对象 
+         *       sources 源对象
+         * 返回值：目标对象
+         * 
+         * Object.assign 方法只会拷贝源对象自身的并且可枚举的属性到目标对象。
+         * String类型和 Symbol类型的属性都会被拷贝。
+         * Object.assign 不会在那些source对象值为 null 或 undefined 的时候抛出错误。
+         */
+
+        const target = {
+            a: 1,
+            b: 2
+        };
+        const source = {
+            b: 4,
+            c: 5
+        };
+        const returnedTarget = Object.assign(target, source);
+        console.log(target); // {a: 1, b: 4, c: 5}
+        console.log(returnedTarget); // {a: 1, b: 4, c: 5}
+
+        // 复制一个对象
+        const obj = {
+            a: 1
+        };
+        const copy = Object.assign({}, obj);
+        console.log(copy); // {a: 1}
+
+        // 深拷贝：因为Object.assign()拷贝的是(可枚举)属性值。 假如源值是一个对象的引用，它仅仅会复制其引用值。
+        const log = console.log;
+
+        function test() {
+            'use strict';
+            let obj1 = {
+                a: 0,
+                b: {
+                    c: 0
+                }
+            };
+            let obj2 = Object.assign({}, obj1);
+            log(JSON.stringify(obj2)); // {"a":0,"b":{"c":0}}
+
+            obj1.a = 1;
+            log(JSON.stringify(obj1)); // {"a":1,"b":{"c":0}}
+            log(JSON.stringify(obj2)); // { a: 0, b: { c: 0}}
+
+            obj2.a = 2;
+            log(JSON.stringify(obj1)); // {"a":1,"b":{"c":0}}
+            log(JSON.stringify(obj2)); // {"a":2,"b":{"c":0}}
+
+            obj2.b.c = 3;
+            log(JSON.stringify(obj1)); // { a: 1, b: { c: 3}}
+            log(JSON.stringify(obj2)); // { a: 2, b: { c: 3}}
+
+            obj1 = {
+                a: 0,
+                b: {
+                    c: 0
+                }
+            };
+            let obj3 = JSON.parse(JSON.stringify(obj1));
+            obj1.a = 4;
+            obj1.b.c = 4;
+            log(JSON.stringify(obj3));
+        }
+        test();
+
+        // 合并对象
+        const o1 = {
+            a: 1
+        };
+        const o2 = {
+            b: 2
+        };
+        const o3 = {
+            c: 3
+        };
+        const obj4 = Object.assign(o1, o2, o3);
+        console.log(obj4); // {a: 1, b: 2, c: 3}
+        console.log(o1); // {a: 1, b: 2, c: 3}, 目标对象自身也会改变
+
+        // 合并具有相同属性的对象
+        const o4 = {
+            a: 1,
+            b: 1,
+            c: 1
+        };
+        const o5 = {
+            b: 2,
+            c: 2
+        };
+        const o6 = {
+            c: 3
+        };
+        const obj5 = Object.assign({}, o4, o5, o6);
+        console.log(obj5); // {a: 1, b: 2, c: 3} 属性被后续参数中具有相同属性的其他对象覆盖
+
+        // 拷贝symbol类型的属性
+        const o7 = {
+            a: 1
+        };
+        const o8 = {
+            [Symbol('foo')]: 2
+        };
+        const obj6 = Object.assign({}, o7, o8);
+        console.log(obj6); // {a: 1, Symbol(foo): 2}
+        console.log(Object.getOwnPropertySymbols(obj6)); // [Symbol(foo)]
+
+        // 继承属性和不可枚举属性是不能拷贝的
+        const obj7 = Object.create({
+            foo: 1
+        }, {
+            bar: {
+                value: 2
+            },
+            baz: {
+                value: 3,
+                enumerable: true
+            }
+        });
+        const copy1 = Object.assign({}, obj7);
+        console.log(copy1); // {baz: 3}
+
+        // 原始类型会被包装为对象
+        const v1 = "abc";
+        const v2 = true;
+        const v3 = 10;
+        const v4 = Symbol("foo");
+
+        const obj8 = Object.assign({}, v1, null, v2, undefined, v3, v4);
+        console.log(obj8); // {0: "a", 1: "b", 2: "c"}
+
+    </script>
+</body>
+
+</html>

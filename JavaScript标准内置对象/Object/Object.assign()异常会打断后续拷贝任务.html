@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const target = Object.defineProperty({}, "foo", {
+            value: 1,
+            // writable: false
+            writable: true
+        });
+
+        Object.assign(target, {
+            bar: 2
+        }, {
+            foo2: 3,
+            foo: 3,
+            foo3: 3
+        }, {
+            baz: 4
+        });
+
+        console.log(target.bar);
+        console.log(target.foo2);
+        console.log(target.foo);
+        console.log(target.foo3);
+        console.log(target.baz);
+    </script>
+</body>
+
+</html>
