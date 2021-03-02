@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 创建对象类型的实例并抛出它
+        */
+        function UserException(message) {
+            this.message = message;
+            this.name = "UserException";
+        }
+
+        UserException.prototype.toString = function () {
+            return this.name + ': "' + this.message + '"';
+        }
+
+        /**
+         * 创建对象类型的实例并抛出它
+        */
+        throw new UserException("Value too high"); // 报错 Uncaught
+    </script>
+</body>
+
+</html>

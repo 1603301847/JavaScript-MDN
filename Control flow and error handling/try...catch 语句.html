@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 调用了一个函数用于从一个数组中根据传递值来获取一个月份名称。
+         * 如果该值与月份数值不相符，会抛出一个带有"InvalidMonthNo"值的异常，然后在捕捉块语句中设monthName变量为unknown。
+         */
+        function getMonthName(mo) {
+            mo = mo - 1;
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+            if (months[mo]) {
+                return months[mo];
+            } else {
+                throw "InvalidMonthNo";
+            }
+        }
+
+        try {
+            monthName = getMonthName(myMonth);
+        } catch (e) {
+            monthName = "unknown";
+            logMyErrors(e); // Uncaught ReferenceError: logMyErrors is not defined
+        }
+    </script>
+</body>
+
+</html>

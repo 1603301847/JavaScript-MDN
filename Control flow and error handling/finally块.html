@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 用文件处理语句打开了一个文件（服务端的JavaScript允许你进入文件）。
+         * 如果在文件打开时一个异常抛出，finally块会在脚本错误之前关闭文件。
+        */
+        openMyFile();
+        try {
+            writeMyFile(theData);
+        } catch (e) {
+            handleError(e);
+        } finally {
+            closeMyFile();
+        }
+    </script>
+</body>
+
+</html>

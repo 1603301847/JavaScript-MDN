@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 使用catch块来处理所有可能在try块中产生的异常。
+         * catch (catchID) {
+                statements
+           }
+         * 捕捉块指定了一个标识符（上述语句中的catchID）来存放抛出语句指定的值；你可以用这个标识符来获取抛出的异常信息。
+         * 在插入throw块时JavaScript创建这个标识符；标识符只存在于catch块的存续期间里；当catch块执行完成时，标识符不再可用。
+         */
+
+        try {
+            throw "myException"
+        } catch (e) {
+            logMyErrors(e) // Uncaught ReferenceError: logMyErrors is not defined
+        }
+    </script>
+</body>
+
+</html>
