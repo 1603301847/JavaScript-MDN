@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * class 声明创建一个基于原型继承的具有给定名称的新类
+         * 使用类表达式定义类。但是不同于类表达式，类声明不允许再次声明已经存在的类，否则将会抛出一个类型错误。
+         * 语法 class name [extends] { // class body }
+         * 描述 和类表达式一样，类声明体在严格模式下运行。构造函数是可选的。
+         * 类声明不可以提升
+        */
+       class Polygon {
+           constructor(height, width) {
+               this.area = height * width;
+           }
+       }
+       console.log(new Polygon(4, 3).area); // 12
+    </script>
+</body>
+</html>

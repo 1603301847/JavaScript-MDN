@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * yield 关键字用来暂停和恢复一个生成器函数
+        */
+        function* countAppleSales () {
+            var saleList = [3, 7, 5];
+            for(var i = 0; i < saleList.length; i++) {
+                yield saleList[i];
+            }
+        }
+        var appleStore = countAppleSales();
+        console.log(appleStore.next()); // {value: 3, done: false}
+        console.log(appleStore.next()); // {value: 7, done: false}
+        console.log(appleStore.next()); // {value: 5, done: false}
+        console.log(appleStore.next()); // {value: undefined, done: true}
+    </script>
+</body>
+</html>
