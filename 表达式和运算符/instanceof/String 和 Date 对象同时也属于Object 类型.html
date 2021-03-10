@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var simpleStr = "This is a simple string";
+        var myString = new String();
+        var newStr = new String("String created with constructor");
+        var myDate = new Date();
+        var myObj = {};
+        var myNonObj = Object.create(null);
+
+        console.log(simpleStr instanceof String); // false
+        console.log(myString instanceof String); // true
+        console.log(newStr instanceof String); // true
+        console.log(myString instanceof Object); // true
+
+        console.log(myObj instanceof Object); // true
+        console.log(({}) instanceof Object); // true
+        console.log(myNonObj instanceof Object); // false
+
+        console.log(myString instanceof Date); // false
+
+        console.log(myDate instanceof Date); // true
+        console.log(myDate instanceof Object); // false
+        console.log(myDate instanceof String); // false
+    </script>
+</body>
+
+</html>

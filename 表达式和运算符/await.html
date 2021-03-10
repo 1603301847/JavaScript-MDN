@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * await  操作符用于等待一个Promise 对象。它只能在异步函数 async function 中使用。
+         * 语法     [返回值] = await 表达式
+         * 表达式   一个Promise对象或者任何要等待的值
+         * 返回值   返回Promise对象的处理结果。如果等待的不是Promise对象，则返回该值本身。
+         * await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。
+         * 若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 async function。
+         * 若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。
+         * 如果 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。
+         * 如果一个 Promise 被传递给一个 await 操作符，await 将等待 Promise 正常处理完成并返回其处理结果。
+         */
+        function resolveAfter2Seconds(x) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(x);
+                }, 2000);
+            });
+        }
+
+        async function f1() {
+            var x = await resolveAfter2Seconds(10);
+            console.log(x);
+        }
+        f1();
+
+        async function f2() {
+            var y = await 20;
+            console.log(y); 
+        }
+        f2();
+
+        async function f3() {
+            try {
+                var z = await Promise.reject(30);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        f3();
+        /**
+         * 打印结果
+         * 40行 20
+         * 48行 30
+         * 34行 10
+        */
+    </script>
+</body>
+
+</html>
