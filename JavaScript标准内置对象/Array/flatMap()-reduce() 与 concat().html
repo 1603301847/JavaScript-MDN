@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 这是低效的，并且应该避免大型阵列：在每次迭代中，它创建一个必须被垃圾收集的新临时数组，
+         * 并且它将元素从当前的累加器数组复制到一个新的数组中，而不是将新的元素添加到现有的数组中。
+        */
+        var arr = [1, 2, 3, 4];
+        arr.flatMap(x => [x, x * 2]);
+        var a = arr.reduce((acc, x) => acc.concat([x, x * 2]), []);
+        console.log(a); // [1, 2, 2, 4, 3, 6, 4, 8]
+    </script>
+</body>
+
+</html>

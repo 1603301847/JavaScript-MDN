@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 提供了一个函数，该函数返回在指定数组中找到的最后一个元素。
+        const cart = ['apple', 'banana', 'pear'];
+
+        function returnLast(arr) {
+            return arr.at(-1);
+        }
+
+        const item1 = returnLast(cart);
+        console.log(item1);
+
+        cart.push('orange');
+        const item2 = returnLast(cart);
+        console.log(item2);
+    </script>
+</body>
+
+</html>

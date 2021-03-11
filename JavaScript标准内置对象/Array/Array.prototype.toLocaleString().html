@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * toLocaleString() 返回一个字符串表示数组中的元素。
+         * 数组中的元素将使用各自的 toLocaleString 方法转成字符串，
+         * 这些字符串将使用一个特定语言环境的字符串（例如一个逗号 ","）隔开。
+         * 语法 arr.toLocaleString([locales[,options]]);
+         * 参数 locales 可选的  
+         *      options 可选的
+         * 返回值 表示数组元素的字符串
+        */
+        const array1 = [1, 'a', new Date('21 Dec 1997 14:12:00 UTC')];
+        const localeString = array1.toLocaleString('en', {
+            timeZone: 'UTC'
+        });
+        console.log(localeString); // 1,a,12/21/1997, 2:12:00 PM
+
+        // 使用locales 和 options
+        // 数组中的元素将会使用各自的toLocaleString方法
+        // Object: Object.prototype.toLocaleString()
+        // Number: Number.prototype.toLocaleString()
+        // Date: Date.prototype.toLocaleString()
+
+        // 总是在prices数组中显示字符串和数字的货币符号：
+        var prices = ['￥7', 500, 8123, 12];
+        var prices1 = prices.toLocaleString('ja-JP', {style: 'currency', currency: 'JPY'});
+        console.log(prices1); // ￥7,￥500,￥8,123,￥12
+    </script>
+</body>
+
+</html>

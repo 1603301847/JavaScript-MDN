@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * fill() 方法用一个固定值填充一个副本中从起始索引到终止索引内的全部元素。不包括终止索引。
+         * 语法    arr.fill(value[, start[, end]])
+         * value  掺入填充元素的值
+         * start  任选 初始索引，最小数值
+         * end    任选 终止索引 最小数值this.length
+         * 返回值  修改后的副本
+         * fill方法接受三个参数 value，start以及end和参数是可选的，其默认值分别为 和对象的 属性值。
+         */
+        const array1 = [1, 2, 3, 4];
+        console.log(array1.fill(0, 2, 4)); // [1, 2, 0, 0] 
+        console.log(array1.fill(5, 1)); // [1, 5, 5, 5]
+        console.log(array1.fill(6)); // [6, 6, 6, 6]
+
+        console.log([1, 2, 3].fill(4)); // [4, 4, 4]
+        console.log([1, 2, 3].fill(4, 1)); // [1, 4, 4]
+        console.log([1, 2, 3].fill(4, 1, 2)); // [1, 4, 3]
+        console.log([1, 2, 3].fill(4, 1, 1)); // [1, 2, 3]
+        console.log([1, 2, 3].fill(4, 3, 3)); // [1, 2, 3]
+        console.log([1, 2, 3].fill(4, -3, -2)); // [4, 2, 3]
+        console.log([1, 2, 3].fill(4, NaN, NaN)); // [1, 2, 3]
+        console.log([1, 2, 3].fill(4, 3, 5)); // [1, 2, 3]
+        console.log(Array(3).fill(4)); // [4, 4, 4]
+        console.log([].fill.call({
+            length: 3
+        }, 4)); // {0: 4, 1: 4, 2: 4, length: 3}
+        var arr = Array(3).fill({});
+        console.log(arr[0].hi = "hi"); // hi
+    </script>
+</body>
+
+</html>

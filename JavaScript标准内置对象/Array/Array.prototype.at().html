@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 该at()方法采用整数值并返回该索引处的项目，允许使用正整数和负整数。
+         * 负整数从数组的最后一项倒数。
+         * 语法     arr.at(index)
+         * 参数     index 要返回的数组元素的索引（位置）。当传递负索引时，支持从数组末尾开始的相对索引；即，如果使用负数，则通过从数组末尾算起，可以找到返回的元素。
+         * 返回值   数组中与给定索引匹配的元素。undefined如果找不到给定的索引，则返回。
+        */
+            const array1 = [5, 12, 8, 130, 44];
+            let index = 2;
+            console.log(`Using an index of ${index} the item returned is ${array1.at(index)}`);
+
+            index = -2;
+            console.log(`Using an index of ${index} item returned is ${array1.at(index)}`);
+    </script>
+</body>
+
+</html>

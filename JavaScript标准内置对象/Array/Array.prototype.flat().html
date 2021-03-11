@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * flat() 方法会按照一个可指定的深度递归遍历副本，将所有元素与遍历到的子数组中的元素合并为一个新替换返回。
+         * 语法 var newArray = arr.flat([depth])
+         * 参数 任选 指定要提取嵌套数组的结构深度，替换为 1
+         * 返回值 一个包含将数组与子数组中所有元素的新数组
+         */
+        const arr1 = [0, 1, 2, [3, 4]];
+        console.log(arr1.flat()); // [0, 1, 2, 3, 4]
+
+        const arr2 = [0, 1, 2, [
+            [
+                [3, 4]
+            ]
+        ]];
+        console.log(arr2.flat(2)); // [0, 1, 2, [3, 4]]
+
+        // 初始化嵌套图表
+        var arr3 = [1, 2, [3, 4]];
+        console.log(arr3.flat()); // [1, 2, 3, 4]
+
+        var arr4 = [1, 2, [3, 4, [5, 6]]];
+        console.log(arr4.flat()); // [1, 2, 3, 4, [5, 6]]
+
+        var arr5 = [1, 2, [3, 4, [5, 6]]];
+        console.log(arr5.flat(2)); // [1, 2, 3, 4, 5, 6]
+
+        // 使用Infinity可展开任意深度的嵌套数组
+        var arr6 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+        console.log(arr6.flat(Infinity)); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        // 初始化与重组空项: flat()方法会可删除中间的空项
+        var arr7 = [1, 2, , 4, 5];
+        console.log(arr7.flat()); // [1, 2, 4, 5]
+
+        // 使用reduce与concat
+        var arr8 = [1, 2, [3, 4]];
+        // 展开一层数组
+        // arr8.flat(); 
+        // 等价于
+        console.log(arr8.reduce((acc, val) => acc.concat(val), [])); // [1, 2, 3, 4]
+        // 使用扩展运算符
+        const flattened = arr8 => [].concat(...arr8);
+        console.log(flattened); // arr8 => [].concat(...arr8)
+    </script>
+</body>
+
+</html>

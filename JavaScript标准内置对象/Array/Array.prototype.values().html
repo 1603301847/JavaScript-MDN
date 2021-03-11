@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /** 
+         * values() 方法返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值
+         */
+        const array1 = ['a', 'b', 'c'];
+        const iterator = array1.values();
+
+        for (const value of iterator) {
+            console.log(value); // a b c
+        }
+
+        // 使用 for...of 循环进行迭代
+        let arr = ['w', 'y', 'k', 'o', 'p'];
+        let eArr = arr.values();
+        for (let letter of eArr) {
+            console.log(letter); // w y k o p
+        }
+
+        /**
+         * Array.prototype.values 是 Array.prototype[Symbol.iterator] 的默认实现。
+         */
+        console.log(Array.prototype.values === Array.prototype[Symbol.iterator]); // true
+
+
+        // 使用.next()迭代
+        var arr1 = ['a', 'b', 'c', 'd', 'e'];
+        var iterator1 = arr1.values();
+        console.log(iterator1.next()); // {value: "a", done: false}
+        console.log(iterator1.next().value); // b
+        console.log(iterator1.next()["value"]); // c
+        console.log(iterator1.next()); // {value: "d", done: false}
+        console.log(iterator1.next()); // {value: "e", done: false}
+        console.log(iterator1.next()); // {value: undefined, done: true}
+        console.log(iterator1.next().value); // undefined
+
+        // 一次性：数组迭代器是一次性的，或者说临时对象
+        var arr2 = ['a', 'b', 'c', 'd', 'e'];
+        var iterator2 = arr2.values();
+        for (let letter1 of iterator2) {
+            console.log(letter1); // a b c d e
+        }
+        for (let letter1 of iterator2) {
+            console.log(letter1);
+        }
+
+        // 当 next().done=true 或 currentIndex>length 时， for..of 循环结束。
+
+        // 数组迭代器中存储的是原数组的地址，而不是数组元素值。
+        // 如果数组中元素改变，那么迭代器的值也会改变
+        var arr3 = ['a', 'b', 'c', 'd', 'e'];
+        var iterator3 = arr3.values();
+        console.log(iterator3); // Array Iterator {}
+        console.log(iterator3.next().value); // a
+        arr3[1]='n';
+        console.log(iterator3.next().value); // n
+    </script>
+</body>
+
+</html>
