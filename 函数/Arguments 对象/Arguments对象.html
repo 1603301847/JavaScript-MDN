@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * arguments 是一个对应于传递给函数的参数的类数组对象
+         * arguments对象是所有（非箭头）函数中都可用的局部变量。
+         */
+        function func1(a, b, c) {
+            console.log(arguments[0]); // 1
+            console.log(arguments[1]); // 2
+            console.log(arguments[2]); // 3
+        }
+        func1(1, 2, 3);
+        /**
+         * 对参数使用扩展语法
+         * 使用Array.form()方法或扩展运算符将参数转换为真实数组：
+         * var args = Array.from(arguments);
+         * var args = [...arguments];
+        */
+       
+    </script>
+</body>
+
+</html>
