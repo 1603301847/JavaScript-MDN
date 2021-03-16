@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * call()方法使用一个指定的this值和单独给出的一个或多个参数来调用一个函数。
+         * call()方法和apply()方法区别
+         * call()方法接受的是一个参数列表，而apply()方法接受的是一个包含多个参数的数组。
+         * 语法 function.call(thisArg, arg1, arg2, ...)
+         * 参数 thisArg 可选的 在function函数运行时使用的this值，this可能不是该方法看到的实际值：如果这个函数处于非严格模式下，则指定为null或undefined时会自动替换为指向全局对象，原始值会被包装。
+         *      arg1, arg2, ... 指定的参数列表
+         * 返回值 使用调用者提供的this值和参数调用该函数的返回值。若该方法没有返回值，则返回undefined
+         * call() 允许为不同的对象分配和调用属于一个对象的函数/方法。
+         * call() 提供新的 this 值给当前调用的函数/方法。
+         * call() 允许为不同的对象分配和调用属于一个对象的函数/方法。
+         * call() 提供新的 this 值给当前调用的函数/方法。
+         */
+        function Product(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        function Food(name, price) {
+            Product.call(this, name, price);
+            this.category = 'food';
+        }
+
+        console.log(new Food('cheese', 5).name); // cheese
+        /**
+         * 使用call方法调用父构造函数
+         * 在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继承
+         * 使用 Food 和 Toy 构造函数创建的对象实例都会拥有在 Product 构造函数中添加的 name 属性和 price 属性,但 category 属性是在各自的构造函数中定义的。
+         */
+        function Product1(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        function Food1(name, price) {
+            Product.call(this, name, price);
+            this.category = 'food';
+        }
+
+        function Toy(name, price) {
+            Product.call(this, name, price);
+            this.category = 'toy';
+        }
+
+        var cheese = new Food1('feta', 5);
+        var fun = new Toy('robot', 40);
+
+        console.log(cheese); // Food1 {name: "feta", price: 5, category: "food"}
+        console.log(fun); // Toy {name: "robot", price: 40, category: "toy"}
+
+        /**
+         * 使用call方法调用匿名函数
+         * for 循环体内，创建了一个匿名函数，然后通过调用该函数的 call 方法，将每个数组元素作为指定的 this 值执行了那个匿名函数。
+         * 这个匿名函数的主要目的是给每个数组元素对象添加一个 print 方法，这个 print 方法可以打印出各元素在数组中的正确索引号。
+         */
+        var animals = [{
+                species: 'Lion',
+                name: 'King'
+            },
+            {
+                species: 'Whale',
+                name: 'Fail'
+            }
+        ];
+
+        for (var i = 0; i < animals.length; i++) {
+            (function (i) {
+                this.print = function () {
+                    console.log('#' + i + ' ' + this.species + ': ' + this
+                        .name); // #0 Lion: King #1 Whale: Fail
+                }
+                this.print();
+            }).call(animals[i], i);
+        }
+
+        /**
+         * 使用 call 方法调用函数并且指定上下文的 'this'
+         * 当调用greet方法的时候，该方法的this值会绑定到obj对象
+         */
+        function greet() {
+            var reply = [this.animal, 'typically sleep between', this.sleepDuration].join(' ');
+            console.log(reply); // cats typically sleep between 12 and 16 hours
+        }
+
+        var obj = {
+            animal: 'cats',
+            sleepDuration: '12 and 16 hours'
+        };
+
+        greet.call(obj);
+
+        /**
+         * 使用 call 方法调用函数并且不指定第一个参数（argument）
+         * 
+         */
+        var sData = "Wisen";
+
+        function display() {
+            console.log('sData value is %s', this.sData); // sData value is Wisen
+        }
+        display.call();
+
+
+        /**
+         * 在严格模式下，this的值将会是undefined
+         */
+        // 'use strict';
+
+        // var sData1 = 'Wisen';
+
+        // function display1() {
+        //     console.log('sData1 value is %s ', this.sData1);
+        // }
+        // display1.call(); // Uncaught TypeError: Cannot read property 'sData' of undefined at display
+    </script>
+</body>
+
+</html>
