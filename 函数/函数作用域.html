@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         在函数内定义的变量不能在函数之外的任何地方访问，因为变量仅仅在该函数的域的内部有定义。
+         相对应的，一个函数可以访问定义在其范围内的任何变量和函数。
+         换言之，定义在全局域中的函数可以访问所有定义在全局域中的变量。
+         在另一个函数中定义的函数也可以访问在其父函数中定义的所有变量和父函数有权访问的任何其他变量。
+        */
+        // 下面的变量定义在全局作用域(global scope)中
+        var num1 = 20,
+            num2 = 3;
+        name = "Chamahk";
+
+        // 本函数定义在全局作用域
+        function multiply() {
+            return num1 * num2;
+        }
+
+        console.log(multiply()); // 60
+
+        // 嵌套函数的例子
+        function getScore() {
+            var num1 = 2,
+                num2 = 3;
+
+            function add() {
+                return name + " scored " + (num1 + num2);
+            }
+            return add();
+        }
+        console.log(getScore()); // Chamahk scored 5
+    </script>
+</body>
+
+</html>

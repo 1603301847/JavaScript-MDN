@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function map(f, a) {
+            let result = [];
+            let i;
+            for (i = 0; i != a.length; i++)
+                result[i] = f(a[i]);
+            return result;
+        }
+
+        const f = function(x) {
+            return x * x * x;
+        }
+        let numbers = [0, 1, 2, 5, 10];
+        let cube = map(f, numbers);
+        console.log(cube); // [0, 1, 8, 125, 1000]
+    </script>
+</body>
+
+</html>

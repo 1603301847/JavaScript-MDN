@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 传递一个对象（即一个非原始值，例如Array或用户自定义的对象）作为参数，
+         * 而函数改变了这个对象的属性，这样的改变对函数外部是可见的
+         */
+        function myFunc(theObject) {
+            theObject.make = "Toyota";
+        }
+
+        var myCar = {
+            make: "Hoda",
+            model: "Accord",
+            year: 1998
+        };
+        var x, y;
+
+        console.log(x = myCar.make); // x获取的值为 Hoda
+
+        myFunc(myCar);
+        console.log(y = myCar.make); // y获取的值为 Toyota (make属性被函数改变了)
+    </script>
+</body>
+
+</html>
