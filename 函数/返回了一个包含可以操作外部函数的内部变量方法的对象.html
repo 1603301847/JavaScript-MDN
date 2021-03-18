@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         *外部函数的name变量对内嵌函数来说是可取得的，而除了通过内嵌函数本身，没有其它任何方法可以取得内嵌的变量。
+          内嵌函数的内嵌变量就像内嵌函数的保险柜。它们会为内嵌函数保留"稳定"而又安全的数据参与运行。
+          而这些内嵌函数甚至不会被分配给一个变量，或者不必一定要有名字。
+        */
+        var createPet = function (name) {
+            var sex;
+            return {
+                setName: function (newName) {
+                    name = newName;
+                },
+
+                getName: function () {
+                    return name;
+                },
+
+                getSex: function () {
+                    return sex;
+                },
+
+                setSex: function (newSex) {
+                    if (typeof newSex == "string" && (newSex.toLowerCase() == "male" || newSex.toLowerCase() ==
+                            "female")) {
+                        sex = newSex;
+                    }
+                }
+            }
+        }
+
+        var pet = createPet("Vivie");
+        console.log(pet.getName()); // Vivie
+
+        pet.setName("Oliver");
+        pet.setSex("male");
+        console.log(pet.getSex()); // male
+        console.log(pet.getName()); // Oliver
+
+
+        
+        var getCode = (function () {
+            var secureCode = "0]Eal(eh&2";
+
+            return function () {
+                return secureCode;
+            };
+        })();
+
+        console.log(getCode()); // 0]Eal(eh&2
+    </script>
+</body>
+
+</html>

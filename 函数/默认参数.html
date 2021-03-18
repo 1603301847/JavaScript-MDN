@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 调用函数时没有实参传递给b，那么它的值就是undefined，于是计算a*b得到、函数返回的是 NaN。
+        */
+        function multiply(a, b) {
+            b = (typeof b !== 'undefined') ? b : 1;
+            return a * b;
+        }
+        console.log(multiply(5)); // 5
+
+        // 使用默认参数
+        function multiply1(a1, b1 = 1) {
+            return a1 * b1;
+        }
+        console.log(multiply1(5)); // 5
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 使用剩余参数收集从第二个到最后参数。然后，将这个数组的每一个数与第一个参数相乘。
+         */
+        function multiply(multiplier, ...theArgs) {
+            return theArgs.map(x => multiplier * x);
+        }
+        var arr = multiply(2, 1, 2, 3);
+        console.log(arr); // [2, 4, 6]
+    </script>
+</body>
+
+</html>

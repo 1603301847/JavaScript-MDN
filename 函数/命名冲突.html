@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 命名冲突发生在 return x上，inside的参数x和outside变量x发生了冲突。
+         * 这里的作用链域是{inside, outside, 全局对象}。
+         * 因此inside的x具有最高优先权，返回了20
+         * inside的x而不是10
+        */
+        function outside() {
+            var x = 5;
+            function inside(x) {
+                return x * 2;
+            }
+            return inside;
+        }
+        console.log(outside()(10));
+    </script>
+</body>
+</html>

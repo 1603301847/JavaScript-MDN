@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * arguments变量只是"类数组对象"，并不是一个数组。
+         * 称其为类数组对象是说它有一个索引编号和length属性。
+         * 它并不拥有全部的Array对象的操作方法。
+        */
+        function myConcat(separator) {
+            var result = '';
+            var i;
+            for(i = 1; i < arguments.length; i++) {
+                result += arguments[i] + separator;
+            }
+            return result;
+        }
+
+        console.log(myConcat(", ", "red", "orange", "blue")); // red, orange, blue,
+        console.log(myConcat("; ", "elephant", "giraffe", "lion", "cheetah")); // elephant; giraffe; lion; cheetah;
+        console.log(myConcat(". ", "sage", "basil", "oregano", "pepper", "parsley")); // sage. basil. oregano. pepper. parsley.
+    </script>
+</body>
+</html>

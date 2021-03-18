@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person() {
+            // 构造函数Person()将`this`定义为自身
+            this.age = 0;
+            setInterval(function growUp() {
+                // 在非严格模式下，growUp()函数将`this`定义为“全局对象”，
+                // 这与Person()定义的`this`不同，
+                // 所以下面的语句不会起到预期的效果。
+                console.log(this.age++);
+            }, 1000);
+        }
+        var p = new Person();
+
+        // 把this的值赋给一个变量
+        function Person1() {
+            var self = this;
+            self.age = 0;
+            setInterval(function growUp1() {
+                console.log(self.age++);
+            }, 1000);
+        }
+        var p1 = new Person1();
+
+        // 创建一个约束函数可以使得this值被正确传递给growUp()函数
+
+        // 箭头函数捕捉闭包上下文的this值
+        function Person2() {
+            this.age = 0;
+
+            setInterval(() => {
+                console.log(this.age++);
+            },1000);
+        }
+        var p2 = new Person2();
+    </script>
+</body>
+
+</html>

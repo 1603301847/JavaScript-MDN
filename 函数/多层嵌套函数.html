@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * C可以访问B的y和A的x
+         * B形成了一个包含A的闭包，B可以访问A的参数和变量
+         * B包含A，所以C也包含A，C可以访问B和A的参数和变量。
+         * C用这个顺序链接了B和A的作用域
+         * 
+         * A不能访问C，因为A看不到B中的参数和变量，C和B中的一个变量，所以C是B的私有
+        */
+        function A(x) {
+            function B(y) {
+                function C(z) {
+                    console.log(x + y + z); // 6
+                }
+                C(3);
+            }
+            B(2);
+        }
+        A(1);
+    </script>
+</body>
+</html>

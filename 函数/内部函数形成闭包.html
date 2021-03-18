@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 由于内部函数形成了闭包，因此你可以调用外部函数并为外部函数和内部函数指定参数
+        */
+        function outside(x) {
+            function inside(y) {
+                return x + y;
+            }
+            return inside;
+        }
+        fn_inside = outside(3);
+        result = fn_inside(5);
+        result1 = outside(3)(5);
+
+        console.log(result); // 8
+        console.log(result1); // 8
+    </script>
+</body>
+
+</html>
