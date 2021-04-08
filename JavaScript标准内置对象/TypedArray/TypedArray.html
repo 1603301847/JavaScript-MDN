@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 一个类型化数组对象描述了一个底层的二进制数据缓冲区的一个类数组视图。
+        */
+       const typedArray1 = new Int8Array(8);
+       typedArray1[0] = 32;
+
+       const typedArray2 = new Int8Array(typedArray1);
+       typedArray2[1] = 42;
+
+       console.log(typedArray1); // Int8Array(8) [32, 0, 0, 0, 0, 0, 0, 0]
+       console.log(typedArray2); // Int8Array(8) [32, 42, 0, 0, 0, 0, 0, 0]
+    </script>
+</body>
+</html>

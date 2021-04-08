@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 冻结对象
+        var obj = {
+            prop: function () {},
+            foo: 'bar'
+        };
+        /**
+         * 新的属性会被添加，已存在的属性可能会被修改或移除
+         */
+        obj.foo = 'baz';
+        obj.lumpy = 'woof';
+        delete obj.prop;
+        console.log(obj); // {foo: "baz", lumpy: "woof"}
+
+        // var o = Object.freeze(obj);
+        // o === obj;
+        // Object.isFrozen(obj);
+        // obj.foo = 'quux';
+        // obj.quaxxor = 'the friendly duck';
+
+        // function fail() {
+        // 'use strict';
+        // obj.foo = 'sparky';
+        // delete obj.quaxxor;
+        // obj.sparky = 'arf';
+        // }
+        // fail();
+
+        Object.defineProperty(obj, 'ohai', {
+            value: 17
+        });
+        Object.defineProperty(obj, 'foo', {
+            value: 'eit'
+        });
+        Object.setPrototypeOf(obj, {
+            x: 20
+        })
+        obj._proto_ = {
+            x: 20
+        }
+    </script>
+</body>
+
+</html>

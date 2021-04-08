@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+         * Object.entries()方法返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环还会枚举原型链中的属性）。
+         * Object.entries(obj)
+         * obj    可以返回其可枚举属性的键值对的对象
+         * 返回值 给定对象自身可枚举属性的键值对数组
+         */
+        const object1 = {
+            a: 'somestring',
+            b: 42
+        }
+        for (const [key, value] of Object.entries(object1)) {
+            console.log(`${key}: ${value}`);
+            /*
+             * 打印结果：a: somestring
+                        b: 42
+            */
+        }
+
+        const obj = {
+            foo: 'bar',
+            baz: 42
+        }
+        console.log(Object.entries(obj));
+        /**
+         * 打印结果
+         * ["foo", "bar"]
+         * ["baz", 42]
+         */
+
+        const obj1 = {
+            0: 'a',
+            1: "b",
+            2: "c"
+        };
+        console.log(Object.entries(obj1));
+        /**
+         * 打印结果
+         * ["0", "a"]
+         * ["1", "b"]
+         * ["2", "c"]
+         */
+
+        const anObj = {
+            100: 'a',
+            2: 'b',
+            7: 'c'
+        };
+        console.log(Object.entries(anObj));
+        /**
+         * 打印结果
+         * ["2", "b"]
+         * ["7", "c"]
+         * ["100", "a"]
+         */
+
+        const myObj = Object.create({}, {
+            getFoo: {
+                value() {
+                    return this.foo
+                }
+            }
+        });
+        myObj.foo = 'bar';
+        console.log(Object.entries(myObj)); // ["foo", "bar"]
+
+        console.log(Object.entries('foo'));
+        /**
+         * 打印结果
+         * ["0", "f"]
+         * ["1", "o"]
+         * ["2", "o"]
+         */
+
+        const obj2 = {
+            a: 5,
+            b: 7,
+            c: 9
+        };
+        for (const [key, value] of Object.entries(obj2)) {
+            console.log(`${key} ${value}`);
+        }
+        /**
+         * a 5
+         * b 7
+         * c 9
+         */
+
+        Object.entries(obj2).forEach(([key, value]) => {
+            console.log(`${key} ${value}`);
+        });
+        /**
+         * a 5
+         * b 7
+         * c 9
+         */
+
+
+
+        /**
+         * 将Object转换为Map
+         *  new Map() 构造函数接受一个可迭代的entries。
+         * 借助Object.entries方法你可以很容易的将Object转换为Map
+         */
+        var obj3 = {
+            foo: "bar",
+            baz: 42
+        };
+        var map = new Map(Object.entries(obj3));
+        console.log(map); // Map(2) {"foo" => "bar", "baz" => 42}
+    </script>
+</body>
+
+</html>
