@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        // 冻结对象
-        var obj = {
-            prop: function () {},
-            foo: 'bar'
-        };
-        /**
-         * 新的属性会被添加，已存在的属性可能会被修改或移除
-         */
-        obj.foo = 'baz';
-        obj.lumpy = 'woof';
-        delete obj.prop;
-        console.log(obj); // {foo: "baz", lumpy: "woof"}
+      // 冻结对象
+      var obj = {
+        prop: function () {},
+        foo: "bar",
+      };
 
-        // var o = Object.freeze(obj);
-        // o === obj;
-        // Object.isFrozen(obj);
-        // obj.foo = 'quux';
-        // obj.quaxxor = 'the friendly duck';
+      // 新的属性会被添加, 已存在的属性可能
+      // 会被修改或移除
+      obj.foo = "baz";
+      obj.lumpy = "woof";
+      delete obj.prop;
 
-        // function fail() {
-        // 'use strict';
-        // obj.foo = 'sparky';
-        // delete obj.quaxxor;
-        // obj.sparky = 'arf';
-        // }
-        // fail();
+      // 作为参数传递的对象与返回的对象都被冻结
+      // 所以不必保存返回的对象（因为两个对象全等）
+      var o = Object.freeze(obj);
 
-        Object.defineProperty(obj, 'ohai', {
-            value: 17
-        });
-        Object.defineProperty(obj, 'foo', {
-            value: 'eit'
-        });
-        Object.setPrototypeOf(obj, {
-            x: 20
-        })
-        obj._proto_ = {
-            x: 20
-        }
+      o === obj; // true
+      Object.isFrozen(obj); // === true
+
+      // 现在任何改变都会失效
+      obj.foo = "quux"; // 静默地不做任何事
+      // 静默地不添加此属性
+      obj.quaxxor = "the friendly duck";
+
+      // 在严格模式，如此行为将抛出 TypeErrors
+      function fail() {
+        "use strict";
+        obj.foo = "sparky"; // throws a TypeError
+        delete obj.quaxxor; // 返回true，因为quaxxor属性从来未被添加
+        obj.sparky = "arf"; // throws a TypeError
+      }
+
+      fail();
+
+      // 试图通过 Object.defineProperty 更改属性
+      // 下面两个语句都会抛出 TypeError.
+      Object.defineProperty(obj, "ohai", { value: 17 });
+      Object.defineProperty(obj, "foo", { value: "eit" });
+
+      // 也不能更改原型
+      // 下面两个语句都会抛出 TypeError.
+      Object.setPrototypeOf(obj, { x: 20 });
+      obj.__proto__ = { x: 20 };
     </script>
-</body>
-
+  </body>
 </html>
